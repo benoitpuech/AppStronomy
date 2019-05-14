@@ -30,6 +30,14 @@ public class Planet implements Parcelable{
 
 
     protected Planet(Parcel in) {
+        name = in.readString();
+        type = in.readString();
+        image = in.readInt();
+        size = in.readInt();
+        rotation = in.readInt();
+        revolution = in.readInt();
+        starDistance = in.readInt();
+        satellites = in.createTypedArrayList(Satellite.CREATOR);
     }
 
     public static final Creator<Planet> CREATOR = new Creator<Planet>() {
@@ -51,5 +59,13 @@ public class Planet implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeInt(image);
+        dest.writeInt(size);
+        dest.writeInt(rotation);
+        dest.writeInt(revolution);
+        dest.writeInt(starDistance);
+        dest.writeTypedList(satellites);
     }
 }
